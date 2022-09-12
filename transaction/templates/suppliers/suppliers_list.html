@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+
+{% block title %} Yetkazib beruvchilar ro'yhati {% endblock title %}
+
+
+{% block content %}
+    
+    <div class="row" style="color: #575757; font-style: bold; font-size: 3rem;">
+        <div class="col-md-8">Yetkazib beruvchilar ro'yhati</div>
+        <div class="col-md-4">       <!-- Log on to codeastro.com for more projects -->        
+            <div style="float:right;"> <a class="btn btn-success" href="{% url 'new-supplier' %}">Yang yetkazib beruvchi qo'shish</a> </div>
+        </div>
+    </div>
+
+    <br>
+
+    <table class="table table-css table-hover table-bordered">
+        
+        <thead class="thead-dark align-middle">
+            <tr>
+                <th width="25%">Nomi</th>
+                <th width="20%">Bo'glanish</th>
+                <th width="25%">INN No</th>
+                <th width="30%">Harakatlar</th>
+            </tr>
+        </thead>
+
+{% if object_list %}
+
+        <tbody>
+            {% for supplier in object_list %}
+            <tr>
+                <td><!-- Log on to codeastro.com for more projects -->
+                    <p> <a href="{% url 'supplier' supplier.name %}">{{ supplier.name }}</a> </p>
+                </td>
+                <td class="align-middle"> {{ supplier.phone }} </td>
+                <td class="align-middle"> {{ supplier.inn }} </td>
+                <td class="align-middle">
+                    <div class="align-middle">
+                        <a href="{% url 'edit-supplier' supplier.pk %}" class="btn btn-info btn-sm">Tahrirlash</a>
+                        <a href="{% url 'delete-supplier' supplier.pk %}" class="btn btn-danger btn-sm">O'chirish</a>
+                    </div>
+                </td>              
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+    <div class="align-middle"><!-- Log on to codeastro.com for more projects -->
+        {% if is_paginated %}
+
+            {% if page_obj.has_previous %}
+                <a class="btn btn-outline-info mb-4" href="?page=1">Boshi</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Oldingi</a>
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Keyingi</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">So'ngi</a>
+            {% endif %}
+
+        {% endif %}
+    </div>
+
+{% else %}
+
+        <tbody></tbody>   
+    </table><!-- Log on to codeastro.com for more projects -->
+
+    <br><br><br><br><br><br><br><br>
+    <div style="color: #575757; font-style: bold; font-size: 1.5rem; text-align: center;">Iltimos biron bir  yozuv kiriting.</div>
+
+{% endif %}
+
+
+{% endblock content %}

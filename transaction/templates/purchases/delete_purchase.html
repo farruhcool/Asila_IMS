@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block title %} Kirimni o'chirish {% endblock title %}
+
+
+{% block content %}
+                
+    <form method="post">
+        
+        {% csrf_token %}
+        
+        <fieldset class="form-group">
+            <div style="color:#575757; font-style: bold; font-size: 3rem; border-bottom: 1px solid white;">Kirim chekini o'chirish</div> <br>
+            <h2 style="color:#575757;">Siz haqiqatdan ham Chek No: {{ object.billno }}ni o'chirmoqchimisiz?</h2>
+        </fieldset>
+
+        <div class="form-group">  
+            <button type="submit" class="btn btn-danger">Ha, o'chirish</button>
+            <a href="{% url 'purchases-list' %}" class="btn btn-secondary">Qaytish</a>
+        </div>
+        
+    </form>
+
+{% endblock content %}

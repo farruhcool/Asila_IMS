@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+
+{% block title %} Biz haqimizda {% endblock title %}
+
+
+{% block content %}
+
+{% if not user.is_authenticated  %}
+<br>
+<a href="{% url 'home' %}" class="btn btn-secondary">Ortga</a>
+{% endif %}
+
+<div class="align-middle" style="color: #4caf50; font-style: bold; font-size: 3rem;">IMS</div>
+<div class="align-middle" style="color: rgb(73, 73, 73)">Asila-IMS Ombor hisobini yuritish tizimi v1.0</div>
+<br><br>
+
+<div class="align-middle">
+    <h2 style="color:#4caf50">| Tizim haqida |</h3> <br>
+        <p>
+            IMS - ((en) Inventory management system) Korxona ombori(sklad) hisobini yuritish, tovarlarni kirimi
+            va chiqimini qilib borish, buyurtmalar bilan ishlash uchun qulaylik yaratuvchi dastur.
+        </p>
+        <br>
+</div>
+<h2 style="color:#4caf50" class="align-middle">| Xususiyatlari |</h3> <br>
+    <ul style="display:table; margin:0 auto; ">
+        <li style="color:#494949;">Joriy mavjud maxsulotlarni ko'rsatish uchun interaktiv diagramma</li>
+        <li style="color:#494949;">Mavjud maxsulotlar tafsilotlari bilan saqlanadi</li>
+        <li style="color:#494949;">Maxsulotlar kiritish operatsiyalari kirimlar orqali amalga oshiriladi</li>
+        <li style="color:#494949;">Maxsulotlar chiqimi operatsiyalari sotish orqali amalga oshiriladi</li>
+        <li style="color:#494949;">Dasturiy ta'minot orqali amalga oshirilgan har bir operatsiya qayd etiladi</li>
+        <li style="color:#494949;">Hisob-kitob dinamik tarzda taqdim etiladi va chop etilishi mumkin</li>
+        <li style="color:#494949;">Yetkazib beruvchilar uchun alohida profillar saqlanadi</li>
+    </ul>
+    <br>
+    <div class="align-middle">
+        <h2 style="color:#4caf50">| Dasturchi |</h3> <br>
+            <p>Farruh Xodjayev Roshan</p>
+            <br><br><br>
+    </div>
+
+    {% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block title %} {{title}} {% endblock title %}
+
+
+{% block content %}
+
+    <div style="color:#575757; font-style: bold; font-size: 3rem; border-bottom: 1px solid white;">{{title}}</div> 
+    
+    <br><!-- Log on to codeastro.com for more projects -->
+    
+    <form method="post">
+    
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        
+        <div class="form-group">
+            {{ form.name.errors }}
+            <label for="{{ form.name.id_for_label }}">Nomi:</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group ">
+            {{ form.quantity.errors }}
+            <label for="{{ form.quantity.id_for_label }}">Soni:</label>
+            {{ form.quantity }}
+        </div>
+
+        <br><!-- Log on to codeastro.com for more projects -->
+
+        <div class="align-middle">
+            <button type="submit" class="btn btn-success">{{ savebtn }}</button>
+            {% if title == "Yangi Maxsulot" %}
+                <button type="reset" class="btn btn-danger" >Qayta o'rnatish</button>
+            {% endif %}
+            {% if delbtn %}
+                <a href="{% url 'delete-stock' object.pk %}" class="btn  btn-danger"> O'chirish </a>
+            {% endif %}
+            <a href="{% url 'inventory' %}" class="btn btn-secondary">Qaytish</a>
+        </div>
+        
+    </form><!-- Log on to codeastro.com for more projects -->
+
+{% endblock content %}

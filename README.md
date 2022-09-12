@@ -1,0 +1,1 @@
+This is experimental IMS program for control stock management in business 
